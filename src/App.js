@@ -1,13 +1,7 @@
 import { useState } from 'react';
 import './App.css';
-import StateMultiSelect from './components/StateMultiSelect';
-import UseStateSomething from './components/UseState';
 
 const App = () => {
-  return (
-    <div className="apps">
-      <StateMultiSelect />
-    </div>
-  );
+  return <div className="apps"></div>;
 };
 export default App;

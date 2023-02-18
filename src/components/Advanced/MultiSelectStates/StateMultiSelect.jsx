@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, createRef } from 'react';
 // data for states and multi selecti
-import { usStates } from '../data/states';
+import { usStates } from '../../../data/states';
 import './styles.css';
 const StateMultiSelect = () => {
   const [dropDownDisplay, setDropDownDisplay] = useState(true);
