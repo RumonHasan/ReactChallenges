@@ -1,15 +1,20 @@
-import { useState } from 'react';
 import './App.css';
-import BasicCounterApp from './components/hooks/useState/CounterApp';
-import CodeBlocksApp from './components/CodeEditor/CodeBlocks/CodeBlocksApp';
-// game
-import Memory from './components/Advanced/MemoryGame/Memory';
+// data base
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import Database from './components/Databases/GraphQl/Database';
 
 const App = () => {
+  // dummy graphql client to fetch data
+  const client = new ApolloClient({
+    uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index',
+    cache: new InMemoryCache(),
+  });
   return (
-    <div className="apps">
-      <Memory />
-    </div>
+    <ApolloProvider client={client}>
+      <div className="apps">
+        <Database />
+      </div>
+    </ApolloProvider>
   );
 };
 export default App;
