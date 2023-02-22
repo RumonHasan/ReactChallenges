@@ -4,6 +4,7 @@ import { gameData } from './GameData';
 const Memory = () => {
   const [gameBoard, setGameBoard] = useState(gameData);
   const [flipCount, setFlipCount] = useState(1);
+  const [score, setScore] = useState(0);
 
   // styles;
   const gameBlock = {
@@ -78,6 +79,7 @@ const Memory = () => {
     }
     // removing the pairs if they are equal
     if (pairCheck[0].name === pairCheck[1].name) {
+      setScore((prevScore) => prevScore + 10);
       let tempBoard = [...board];
       let pairIndex = 0;
       for (let index in tempBoard) {
@@ -91,6 +93,7 @@ const Memory = () => {
           break;
         }
       }
+
       setGameBoard(tempBoard);
       setFlipCount(1);
     } else {
@@ -125,7 +128,11 @@ const Memory = () => {
         alignItems: 'center',
       }}
     >
-      <span>Memory Game</span>
+      <div style={{ display: 'flex' }}>
+        <span>Memory Game</span>
+        <span>Score: {score}</span>
+      </div>
+
       <div>{gameBoardMatrix()}</div>
     </div>
   );
