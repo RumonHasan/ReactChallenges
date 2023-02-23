@@ -2,6 +2,9 @@ import './App.css';
 // data base
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Database from './components/Databases/GraphQl/Database';
+import MapFunction from './components/Functions/MapFunction';
+import UseEffectApp from './components/hooks/useEffect/UseEffect';
+import BasicAddingStuff from './components/hooks/useState/BasicAddingStuff';
 
 const App = () => {
   // dummy graphql client to fetch data
@@ -12,7 +15,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <div className="apps">
-        <Database />
+        <BasicAddingStuff />
       </div>
     </ApolloProvider>
   );
