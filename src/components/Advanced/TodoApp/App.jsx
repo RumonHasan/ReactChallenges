@@ -8,21 +8,51 @@ const TodoApp = () => {
   const [editInput, setEditInput] = useState('');
   const [editBoxDisplay, setEditBoxDisplay] = useState(false);
   const [editId, setEditId] = useState('');
-  const [categoryTodos, setCategoryTodos] = useState([]);
+  // object that will contain category array based on category
+  const [categoryTodos, setCategoryTodos] = useState({
+    homework: [],
+    test: [],
+    general: [],
+  });
+  const [selectCategory, setSelectCategory] = useState('');
+  const categoryOptions = [
+    {
+      value: 'test',
+      label: 'Test',
+    },
+    {
+      value: 'general',
+      label: 'General',
+    },
+    {
+      value: 'homework',
+      label: 'Homework',
+    },
+  ];
 
   // function for adding a new todo
   const submitTodo = () => {
-    if (inputValue === '' || inputValue == null) {
+    if (inputValue === '' || inputValue == null || selectCategory === '') {
       return;
     } else {
       const newTodoObject = {
         id: Math.floor(Math.random() * 1000),
         name: inputValue,
         completed: false,
+        category: selectCategory,
       };
+      addToCategoryArray(newTodoObject);
       setTodos((prevTodos) => [...prevTodos, newTodoObject]);
     }
     setInputValue('');
+  };
+  //add to category array
+  const addToCategoryArray = (todo) => {
+    const todoCategory = todo.category;
+    setCategoryTodos({
+      ...categoryTodos,
+      [todoCategory]: [...categoryTodos[todoCategory], todo],
+    });
   };
 
   // function to check whether the todo is completed or not
@@ -97,6 +127,18 @@ const TodoApp = () => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
             />
+            <select
+              value={selectCategory}
+              onChange={(e) => setSelectCategory(e.target.value)}
+            >
+              {categoryOptions.map((category, index) => {
+                return (
+                  <option key={index} value={category.value}>
+                    {category.label}
+                  </option>
+                );
+              })}
+            </select>
             <button onClick={() => submitTodo()}>Add Todo</button>
           </div>
         )}
