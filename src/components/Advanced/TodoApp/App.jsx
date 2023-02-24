@@ -1,0 +1,148 @@
+import { useEffect, useState } from 'react';
+import Todo from './Todo';
+import './todoStyles.css';
+const TodoApp = () => {
+  const [todos, setTodos] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [completedTodos, setCompletedTodos] = useState([]);
+  const [editInput, setEditInput] = useState('');
+  const [editBoxDisplay, setEditBoxDisplay] = useState(false);
+  const [editId, setEditId] = useState('');
+  const [categoryTodos, setCategoryTodos] = useState([]);
+
+  // function for adding a new todo
+  const submitTodo = () => {
+    if (inputValue === '' || inputValue == null) {
+      return;
+    } else {
+      const newTodoObject = {
+        id: Math.floor(Math.random() * 1000),
+        name: inputValue,
+        completed: false,
+      };
+      setTodos((prevTodos) => [...prevTodos, newTodoObject]);
+    }
+    setInputValue('');
+  };
+
+  // function to check whether the todo is completed or not
+  const checkTodo = (e, todoId) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === todoId
+          ? {
+              ...todo,
+              completed: !todo.completed,
+            }
+          : todo
+      )
+    );
+  };
+  // adding completed todos
+  useEffect(() => {
+    let localTodos = [...todos];
+    const completedTodos = localTodos.filter((todo) => todo.completed === true);
+    setCompletedTodos(completedTodos);
+  }, [todos]);
+
+  // deleting a todo
+  const deleteTodo = (todoId) => {
+    const newTodos = todos.filter((todo) => todo.id !== todoId);
+    setTodos(newTodos);
+  };
+
+  // editing todo
+  const editTodo = (todoId) => {
+    setEditBoxDisplay(true);
+    setEditId(todoId);
+  };
+
+  // edit the todo
+  const deployEdits = () => {
+    if (editInput === '' || editInput === undefined) {
+      return;
+    }
+    if (editInput) {
+      let prevTodos = [...todos].map((todo) =>
+        todo.id === editId
+          ? {
+              ...todo,
+              name: editInput,
+            }
+          : todo
+      );
+      setTodos(prevTodos);
+      setEditBoxDisplay(false);
+      setEditInput('');
+    }
+  };
+
+  return (
+    <div className="todo-container">
+      <h1>My Todo App</h1>
+      <div className="todo-input">
+        {editBoxDisplay ? (
+          <div>
+            <input
+              placeholder="Enter New Task Name"
+              value={editInput}
+              onChange={(e) => setEditInput(e.target.value)}
+            />
+            <button onClick={() => deployEdits()}>Edit Todo</button>
+          </div>
+        ) : (
+          <div>
+            <input
+              placeholder="Enter Your task"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+            <button onClick={() => submitTodo()}>Add Todo</button>
+          </div>
+        )}
+      </div>
+      <div className="todolist-wrapper">
+        <div className="todolist-container">
+          <span>Todo Tasks:</span>
+          {todos?.map((todo) => {
+            const { name, id, completed } = todo;
+            if (!completed) {
+              return (
+                <Todo
+                  todoName={name}
+                  checkTodo={checkTodo}
+                  todoId={id}
+                  completed={completed}
+                  deleteTodo={deleteTodo}
+                  editTodo={editTodo}
+                />
+              );
+            }
+          })}
+        </div>
+        {completedTodos.length > 0 && (
+          <div className="completed-todos">
+            <span>Completed Todos:</span>
+            {completedTodos?.map((todo) => {
+              const { name, id, completed } = todo;
+              if (completed) {
+                return (
+                  <Todo
+                    todoName={name}
+                    checkTodo={checkTodo}
+                    todoId={id}
+                    completed={completed}
+                    deleteTodo={deleteTodo}
+                    editTodo={editTodo}
+                  />
+                );
+              }
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default TodoApp;
