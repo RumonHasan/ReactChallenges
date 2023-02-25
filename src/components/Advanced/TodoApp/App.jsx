@@ -182,6 +182,26 @@ const TodoApp = () => {
             })}
           </div>
         )}
+
+        <div className="category-todos" style={{ marginTop: 100 }}>
+          <h3>category todos</h3>
+          <div style={{ display: 'flex' }}>
+            {categoryOptions.map((category, index) => {
+              const { label, value } = category;
+              return (
+                <div style={{ margin: 10, border: '2px solid blue' }}>
+                  <h5>{label}</h5>
+                  <hr></hr>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    {categoryTodos[value]?.map((todo) => {
+                      return <span>{todo.name}</span>;
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
