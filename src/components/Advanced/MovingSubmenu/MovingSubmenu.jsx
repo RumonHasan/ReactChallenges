@@ -13,11 +13,13 @@ const MovingSubmenu = () => {
     const right = submenuDimensions.right;
     const top = submenuDimensions.top;
     const bottom = submenuDimensions.bottom;
+    const width = submenuDimensions.width;
     setOriginalSubLocation({
       left: left,
       right: right,
       top: top,
       bottom: bottom,
+      width: width,
     });
   }, []);
 
@@ -26,11 +28,13 @@ const MovingSubmenu = () => {
   const buttonTwoRef = useRef(null);
   const submenuRef = useRef(null);
   // fetching the button dimensions
-  const sendButtonLocations = (buttonRef, buttonData) => {
+  const sendButtonLocations = (buttonRef, buttonData, params) => {
+    const { widthIncrement, heightIncrement } = params;
     const dimensions = buttonRef.current.getBoundingClientRect();
     const centerButtonOrigin = (dimensions.left + dimensions.right) / 2;
     const bottomOrigin = dimensions.bottom + 3;
     setButtonLocations({
+      widthIncrement: widthIncrement,
       centerPos: centerButtonOrigin,
       bottomPos: bottomOrigin,
       buttonData: buttonData,
@@ -40,7 +44,10 @@ const MovingSubmenu = () => {
   // updating submenu locations locations
   useEffect(() => {
     const submenuDimensions = submenuRef.current;
-    submenuDimensions.style.left = `${buttonLocations.centerPos}px`;
+    if (buttonLocations.widthIncrement) {
+      submenuDimensions.style.width = `${buttonLocations.widthIncrement}px`;
+    }
+    submenuDimensions.style.left = `${buttonLocations.centerPos - 160}px`;
     submenuDimensions.style.top = `${buttonLocations.bottomPos}px`;
   }, [buttonLocations]);
 
@@ -57,7 +64,7 @@ const MovingSubmenu = () => {
       <div className="button-container">
         <button
           onMouseEnter={() =>
-            sendButtonLocations(buttonOneRef, 'This is Button One Area')
+            sendButtonLocations(buttonOneRef, 'You are a bitch!!!', {})
           }
           onMouseLeave={() => setDefaultLocations()}
           ref={buttonOneRef}
@@ -66,7 +73,10 @@ const MovingSubmenu = () => {
         </button>
         <button
           onMouseEnter={() =>
-            sendButtonLocations(buttonTwoRef, 'This is Button Two Area')
+            sendButtonLocations(buttonTwoRef, 'Sorry you are also a bitch!!', {
+              widthIncrement: 50,
+              heightIncrement: 50,
+            })
           }
           onMouseLeave={() => setDefaultLocations()}
           ref={buttonTwoRef}

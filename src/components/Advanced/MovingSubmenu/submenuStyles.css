@@ -1,7 +1,7 @@
 .container {
   position: relative;
   height: 80vh;
-  width: 80vw;
+  width: 60vw;
   transition: 450ms ease-in-out;
 }
 
