@@ -7,6 +7,8 @@ import UseEffectApp from './components/hooks/useEffect/UseEffect';
 import BasicAddingStuff from './components/hooks/useState/BasicAddingStuff';
 // todo app
 import TodoApp from './components/Advanced/TodoApp/App';
+// moving submenu
+import MovingSubmenu from './components/Advanced/MovingSubmenu/MovingSubmenu';
 
 const App = () => {
   // dummy graphql client to fetch data
@@ -17,7 +19,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <div className="apps">
-        <TodoApp />
+        <MovingSubmenu />
       </div>
     </ApolloProvider>
   );
