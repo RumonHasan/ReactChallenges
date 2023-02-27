@@ -4,6 +4,23 @@ const MovingSubmenu = () => {
   // useStates
   const [buttonLocations, setButtonLocations] = useState({});
   const [showSubmenu, setShowSubmenu] = useState(false);
+  const [originalSubLocation, setOriginalSubLocation] = useState({});
+
+  // original sub location
+  useEffect(() => {
+    const submenuDimensions = submenuRef.current.getBoundingClientRect();
+    const left = submenuDimensions.left;
+    const right = submenuDimensions.right;
+    const top = submenuDimensions.top;
+    const bottom = submenuDimensions.bottom;
+    setOriginalSubLocation({
+      left: left,
+      right: right,
+      top: top,
+      bottom: bottom,
+    });
+  }, []);
+
   // ref states
   const buttonOneRef = useRef(null);
   const buttonTwoRef = useRef(null);
@@ -27,21 +44,31 @@ const MovingSubmenu = () => {
     submenuDimensions.style.top = `${buttonLocations.bottomPos}px`;
   }, [buttonLocations]);
 
+  // setting default locations
+  const setDefaultLocations = () => {
+    const submenu = submenuRef.current;
+    submenu.style.left = `${originalSubLocation.left}px`;
+    submenu.style.top = `${originalSubLocation.top}px`;
+    setShowSubmenu(false);
+  };
+
   return (
     <div className="container">
       <div className="button-container">
         <button
-          onClick={() =>
+          onMouseEnter={() =>
             sendButtonLocations(buttonOneRef, 'This is Button One Area')
           }
+          onMouseLeave={() => setDefaultLocations()}
           ref={buttonOneRef}
         >
           Button One
         </button>
         <button
-          onClick={() =>
+          onMouseEnter={() =>
             sendButtonLocations(buttonTwoRef, 'This is Button Two Area')
           }
+          onMouseLeave={() => setDefaultLocations()}
           ref={buttonTwoRef}
         >
           Button Two
