@@ -32,9 +32,22 @@ const DragAndDrop = () => {
     e.preventDefault();
   };
 
+  // from drop zone
+  const handleDragFromDropZone = (e, type) => {
+    e.dataTransfer.setData('dropzoneWidgets', type);
+  };
+  const handleDropFromDropzone = (e) => {
+    const dropzoneWidgets = e.dataTransfer.getData('dropzoneWidgets');
+    setDraggableWidgets([...draggableWidgets, dropzoneWidgets]);
+  };
+
   return (
     <div className="main-container">
-      <div className="draggables-container draggables">
+      <div
+        className="draggables-container draggables"
+        onDragOver={handleDragOver}
+        onDrop={handleDropFromDropzone}
+      >
         {draggableWidgets?.map((widget, index) => {
           const { name, type } = widget;
           return (
@@ -56,7 +69,12 @@ const DragAndDrop = () => {
       >
         {widgets?.map((widget, index) => {
           return (
-            <div className="dropped-widget" key={index}>
+            <div
+              className="dropped-widget"
+              key={index}
+              draggable
+              onDragStart={(e) => handleDragFromDropZone(e, widget)}
+            >
               {widget}
             </div>
           );
