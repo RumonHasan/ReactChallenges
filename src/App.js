@@ -9,6 +9,8 @@ import BasicAddingStuff from './components/hooks/useState/BasicAddingStuff';
 import TodoApp from './components/Advanced/TodoApp/App';
 // moving submenu
 import MovingSubmenu from './components/Advanced/MovingSubmenu/MovingSubmenu';
+import UseStateApp from './components/hooks/useState/UseStateApp';
+import DragAndDrop from './components/Advanced/DragAndDrop/DragAndDrop';
 
 const App = () => {
   // dummy graphql client to fetch data
@@ -19,7 +21,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <div className="apps">
-        <MovingSubmenu />
+        <DragAndDrop />
       </div>
     </ApolloProvider>
   );

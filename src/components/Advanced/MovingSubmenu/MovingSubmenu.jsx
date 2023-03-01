@@ -46,6 +46,8 @@ const MovingSubmenu = () => {
     const submenuDimensions = submenuRef.current;
     if (buttonLocations.widthIncrement) {
       submenuDimensions.style.width = `${buttonLocations.widthIncrement}px`;
+    } else {
+      submenuDimensions.style.width = '300px';
     }
     submenuDimensions.style.left = `${buttonLocations.centerPos - 160}px`;
     submenuDimensions.style.top = `${buttonLocations.bottomPos}px`;
