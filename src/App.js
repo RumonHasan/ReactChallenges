@@ -11,6 +11,7 @@ import TodoApp from './components/Advanced/TodoApp/App';
 import MovingSubmenu from './components/Advanced/MovingSubmenu/MovingSubmenu';
 import UseStateApp from './components/hooks/useState/UseStateApp';
 import DragAndDrop from './components/Advanced/DragAndDrop/DragAndDrop';
+import MultiStepForm from './components/Intermediate/MultiStepForm/MultiStepForm';
 
 const App = () => {
   // dummy graphql client to fetch data
@@ -21,7 +22,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <div className="apps">
-        <DragAndDrop />
+        <MultiStepForm />
       </div>
     </ApolloProvider>
   );
