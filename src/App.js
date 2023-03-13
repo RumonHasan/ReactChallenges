@@ -12,6 +12,8 @@ import MovingSubmenu from './components/Advanced/MovingSubmenu/MovingSubmenu';
 import UseStateApp from './components/hooks/useState/UseStateApp';
 import DragAndDrop from './components/Advanced/DragAndDrop/DragAndDrop';
 import MultiStepForm from './components/Intermediate/MultiStepForm/MultiStepForm';
+import StrapiSubmenu from './components/Advanced/StrapiSubmenu/StrapiSubmenu';
+import ExpandingBlocks from './components/Advanced/ExpandingBlocks/ExpandingBlocks';
 
 const App = () => {
   // dummy graphql client to fetch data
@@ -22,7 +24,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <div className="apps">
-        <MultiStepForm />
+        <ExpandingBlocks />
       </div>
     </ApolloProvider>
   );
