@@ -76,9 +76,14 @@ const ShoppingCart = () => {
           return (
             <div key={id}>
               {prodData.name}- QTY:{quantity}
-              <button onClick={() => deleteCartItem(id, quantity)}>
-                Delete Cart Item
-              </button>
+              <div
+                style={{ display: 'flex', flexDirection: 'column', width: 100 }}
+              >
+                <button onClick={() => addToCart(id)}>Add Item</button>
+                <button onClick={() => deleteCartItem(id, quantity)}>
+                  Delete Cart Item
+                </button>
+              </div>
             </div>
           );
         })}
