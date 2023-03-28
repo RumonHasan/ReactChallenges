@@ -38,22 +38,12 @@ const ShoppingCart = () => {
 
   // delete cart items one by one... if the quantity hits 0 then automatically removes the entire item from the cart
   const deleteCartItem = (id, quantity) => {
-    if (quantity === 1) {
-      return setCartItems((prevItems) =>
-        prevItems.filter((item) => item.id !== id)
-      );
-    }
     return setCartItems((prevItems) =>
-      prevItems.map((item, index) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            quantity: item.quantity - 1,
-          };
-        } else {
-          return item;
-        }
-      })
+      quantity === 1
+        ? prevItems.filter((item) => item.id !== id)
+        : prevItems.map((item) =>
+            item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+          )
     );
   };
 
