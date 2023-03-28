@@ -1,0 +1,28 @@
+.shopping-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.products {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product {
+  height: 100px;
+  width: 200px;
+  border: 2px solid white;
+  align-items: center;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}

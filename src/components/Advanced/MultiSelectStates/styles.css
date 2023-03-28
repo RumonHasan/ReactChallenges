@@ -1,0 +1,33 @@
+.dropdown-container {
+  max-width: 700px;
+  height: 100vh;
+  background-color: antiquewhite;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: black;
+}
+
+.button {
+  background-color: antiquewhite;
+  height: 30px;
+  width: 300px;
+  cursor: pointer;
+  position: absolute;
+  color: black;
+}
+
+.state-list-container {
+  max-height: 800px;
+  overflow-y: auto;
+  display: grid;
+  margin-top: 50px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.checked {
+  color: aqua;
+}
+.unchecked {
+  color: rgb(18, 24, 30);
+}

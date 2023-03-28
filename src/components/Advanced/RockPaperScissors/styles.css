@@ -1,0 +1,23 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game {
+  display: flex;
+}
+
+.button {
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+  border-radius: 30px;
+  font-size: 20px;
+  letter-spacing: 0ch;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+}

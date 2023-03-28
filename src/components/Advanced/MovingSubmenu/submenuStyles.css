@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+  height: 80vh;
+  width: 60vw;
+  transition: 450ms ease-in-out;
+}
+
+.submenu {
+  height: 300px;
+  width: 300px;
+  background-color: gray;
+  border-radius: 10%;
+  position: absolute;
+  color: white;
+  transition: 450ms ease-in-out;
+  display: none;
+  transform: translateX(-50%);
+}
+
+.submenu.active {
+  display: block;
+}
+
+.button-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container button {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+}

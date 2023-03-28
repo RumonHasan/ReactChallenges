@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.submenu-container {
+  display: flex;
+  margin-top: 50px;
+}
+
+.item {
+  margin: 20px;
+  border-radius: 40px;
+  padding: 15px;
+  color: black;
+  font-weight: bold;
+  background-color: rgb(231, 229, 227);
+  cursor: pointer;
+  transition: 450ms ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete {
+  border-radius: 40px;
+  color: rgb(249, 245, 245);
+  padding: 10px;
+  font-size: 15px;
+  background-color: red;
+  font-weight: bold;
+  border: none;
+  transition: 650ms ease-in-out;
+  transform: scale(0);
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.delete.view {
+  transform: scale(1);
+  visibility: visible;
+  transition: 650ms ease-in-out;
+}
