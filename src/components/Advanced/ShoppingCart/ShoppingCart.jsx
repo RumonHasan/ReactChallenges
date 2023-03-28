@@ -33,15 +33,18 @@ const ShoppingCart = () => {
   };
   // show cart items
   const getCartItemDetails = (id) => {
+    // gets the detail of the cart item from the product array after passing the id from the cart item
     return [...productArray].filter((item) => item.id === id)[0];
   };
 
   // delete cart items one by one... if the quantity hits 0 then automatically removes the entire item from the cart
   const deleteCartItem = (id, quantity) => {
     return setCartItems((prevItems) =>
+      // if quantity is 1 then filter the items based on id and return the items without the id so deleting the item when the qty hits 0
       quantity === 1
         ? prevItems.filter((item) => item.id !== id)
-        : prevItems.map((item) =>
+        : // else map through the items and subtract 1 from the quantity of the items
+          prevItems.map((item) =>
             item.id === id ? { ...item, quantity: item.quantity - 1 } : item
           )
     );
