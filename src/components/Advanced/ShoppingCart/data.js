@@ -1,17 +1,17 @@
 export const products = [
   {
     id: 1,
-    name: 'Yoi',
+    name: 'Sky',
     price: 10,
   },
   {
     id: 2,
-    name: 'Yoi Laptop',
+    name: 'Moeka Laptop',
     price: 100,
   },
   {
     id: 3,
-    name: 'Yoi Pen',
+    name: 'Rumon Pen',
     price: 1000,
   },
   {

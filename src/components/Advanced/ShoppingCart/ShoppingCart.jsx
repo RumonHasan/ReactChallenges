@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { products } from './data';
 import './style.css';
 
 const ShoppingCart = () => {
   const [productArray, setProductArray] = useState(products);
   const [cartItems, setCartItems] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
 
   // adding to cart
   const addToCart = (id) => {
@@ -50,9 +51,28 @@ const ShoppingCart = () => {
     );
   };
 
+  // search product based on name
+  useEffect(() => {
+    if (searchInput === '') {
+      // if the search is empty then setting back to original products
+      setProductArray(products);
+    } else {
+      // else filtering based on the product name
+      const filteredProducts = products.filter((product) =>
+        product.name.toLowerCase().startsWith(searchInput.toLowerCase())
+      );
+      setProductArray(filteredProducts);
+    }
+  }, [searchInput]);
+
   return (
     <div className="shopping-container">
-      ShoppingCart
+      ShoppingCart:{' '}
+      <input
+        placeholder="Search Product"
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
+      />
       {/* Products */}
       <div className="products">
         {productArray.map((product, index) => {
