@@ -9,43 +9,39 @@ const ShoppingCart = () => {
 
   // adding to cart
   const addToCart = (id) => {
-    // checks whether the item is there or not
     let itemFound = [...cartItems].find((item) => item.id === id);
     if (itemFound) {
-      // adds one item to the existing quantity of cart items
-      setCartItems((prevCartItems) =>
-        prevCartItems.map((item) =>
-          item.id === id
-            ? {
-                ...item,
-                quantity: item.quantity + 1,
-              }
-            : item
-        )
+      let updatedCart = cartItems.map((cartItem) =>
+        cartItem.id === id
+          ? {
+              ...cartItem,
+              quantity: cartItem.quantity + 1,
+            }
+          : cartItem
       );
+      setCartItems(updatedCart);
     } else {
-      // adds a new cart item with quantity default as 1
-      const newCartItem = {
-        id: id,
-        quantity: 1,
-      };
-      setCartItems((prevCartItems) => [...prevCartItems, newCartItem]);
+      setCartItems((prevCartItems) => [
+        ...prevCartItems,
+        {
+          id: id,
+          quantity: 1,
+        },
+      ]);
     }
   };
+
   // show cart items
   const getCartItemDetails = (id) => {
-    // gets the detail of the cart item from the product array after passing the id from the cart item
     return [...productArray].filter((item) => item.id === id)[0];
   };
 
   // delete cart items one by one... if the quantity hits 0 then automatically removes the entire item from the cart
   const deleteCartItem = (id, quantity) => {
     return setCartItems((prevItems) =>
-      // if quantity is 1 then filter the items based on id and return the items without the id so deleting the item when the qty hits 0
       quantity === 1
         ? prevItems.filter((item) => item.id !== id)
-        : // else map through the items and subtract 1 from the quantity of the items
-          prevItems.map((item) =>
+        : prevItems.map((item) =>
             item.id === id ? { ...item, quantity: item.quantity - 1 } : item
           )
     );
@@ -54,10 +50,8 @@ const ShoppingCart = () => {
   // search product based on name
   useEffect(() => {
     if (searchInput === '') {
-      // if the search is empty then setting back to original products
       setProductArray(products);
     } else {
-      // else filtering based on the product name
       const filteredProducts = products.filter((product) =>
         product.name.toLowerCase().startsWith(searchInput.toLowerCase())
       );
@@ -95,10 +89,13 @@ const ShoppingCart = () => {
       <div className="cart">
         {cartItems?.map((item, index) => {
           const { id, quantity } = item;
-          const prodData = getCartItemDetails(id);
+          let prodData = getCartItemDetails(id);
+          console.log(item);
           return (
             <div key={id}>
-              {prodData.name}- QTY:{quantity}
+              <h3>
+                {prodData.name}- QTY:{item.quantity}
+              </h3>
               <div
                 style={{ display: 'flex', flexDirection: 'column', width: 100 }}
               >
