@@ -7,7 +7,6 @@ import Example from './components/FramerMotion/VerticalScrollCard/VerticalScroll
 import Memory from './components/Advanced/MemoryBoard/Memory';
 import Game from './components/Advanced/RockPaperScissors/Game';
 import CoolSubmenu from './components/Intermediate/CoolSubmenu/CoolSubmenu';
-import ShoppingCart from './components/Advanced/ShoppingCart/ShoppingCart';
 
 const App = () => {
   // dummy graphql client to fetch data
@@ -16,9 +15,9 @@ const App = () => {
     cache: new InMemoryCache(),
   });
   return (
-    <ApolloProvider client={client}>
-      <ShoppingCart />
-    </ApolloProvider>
+    <>
+      <Memory />
+    </>
   );
 };
 export default App;
