@@ -7,6 +7,7 @@ import Example from './components/FramerMotion/VerticalScrollCard/VerticalScroll
 import Memory from './components/Advanced/MemoryBoard/Memory';
 import Game from './components/Advanced/RockPaperScissors/Game';
 import CoolSubmenu from './components/Intermediate/CoolSubmenu/CoolSubmenu';
+import Sidepopup from './components/Advanced/SidePopup/Sidepopup';
 
 const App = () => {
   // dummy graphql client to fetch data
@@ -16,7 +17,7 @@ const App = () => {
   });
   return (
     <>
-      <Memory />
+      <Sidepopup />
     </>
   );
 };
